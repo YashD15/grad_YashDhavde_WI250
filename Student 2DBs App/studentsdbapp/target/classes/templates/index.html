@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Student</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">
+            Add New Student Record
+        </h1>
+
+        <form action="/insert" method="post" class="space-y-4">
+            <div class="flex items-center space-x-4">
+                <label class="w-24 text-gray-700 font-medium">
+                    Roll No
+                </label>
+                <input type="number" name="rollno" class="flex-1 px-3 py-2 border rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:cursor-text" required>
+            </div>
+            <div class="flex items-center space-x-4">
+                <label class="w-24 text-gray-700 font-medium">
+                    Name
+                </label>
+                <input type="text" name="name" class="flex-1 px-3 py-2 border rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:cursor-text" required>    
+            </div>
+            <div class="flex items-center space-x-4">
+                <label class="w-24 text-gray-700 font-medium">
+                    Standard
+                </label>
+                <input type="number" name="standard" class="flex-1 px-3 py-2 border rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:cursor-text" required>    
+            </div>
+            <div class="flex items-center space-x-4">
+                <label class="w-24 text-gray-700 font-medium">
+                    School
+                </label>
+                <input type="text" name="school" class="flex-1 px-3 py-2 border rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:cursor-text" required>    
+            </div>
+            <div class="flex justify-center space-x-4 pt-6">
+                <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg transition duration-200 select-none">
+                    Insert
+                </button>
+
+                <button type="reset"
+                        class="bg-red-400 hover:bg-red-500 text-white px-5 py-2 rounded-lg transition duration-200 select-none">
+                    Reset
+                </button>
+            </div>
+
+        </form>
+    </div>
+    <script th:if="${message}" th:inline="javascript">
+        alert([[${message}]]);
+        window.location.href = "/";
+    </script>
+</body>
+</html>

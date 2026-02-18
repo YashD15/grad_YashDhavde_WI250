@@ -1,0 +1,21 @@
+{
+  "groups": [
+    {
+      "name": "spring.datasource.h2",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.example.studentsdbapp.config.H2Config",
+      "sourceMethod": "public javax.sql.DataSource h2DataSource() "
+    },
+    {
+      "name": "spring.datasource.pg",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.example.studentsdbapp.config.PgConfig",
+      "sourceMethod": "public javax.sql.DataSource pgDataSource() "
+    }
+  ],
+  "properties": [],
+  "hints": [],
+  "ignored": {
+    "properties": []
+  }
+}
