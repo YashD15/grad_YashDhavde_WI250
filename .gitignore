@@ -1,0 +1,58 @@
+# Compiled class file
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Build output directories
+target/
+build/
+bin/
+out/
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+# The project-specific files in the .mvn directory should be tracked,
+# but the generated maven-wrapper.jar should be ignored.
+!.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle
+.gradletasknamecache
+
+# IDE specific files
+.idea/         # IntelliJ IDEA
+*.iws
+*.iml
+*.ipr
+.project       # Eclipse and STS
+.classpath
+.factorypath
+.settings/
+.springBeans
+.sts4-cache/
+.vscode/       # VS Code
+
+# Operating System files
+.DS_Store      # macOS
+thumbs.db      # Windows
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+*.bak
+*~.nib
+
+# Environment variables and secrets
+# Do not commit sensitive information to your repository.
+# Use environment variables or other secure methods for credentials.
+.env
+application.properties
+application.yml
+secrets.yml
