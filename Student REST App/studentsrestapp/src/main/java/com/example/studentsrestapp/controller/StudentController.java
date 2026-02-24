@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -39,56 +40,78 @@ public class StudentController {
     // GET /students/result?pass=true
 
     @GetMapping
-    public List<Student> getAll() {
-        return repo.findAll();
+    public ResponseEntity<List<Student>> getAll() {
+        List<Student> students = repo.findAll();
+        if (students.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+        return ResponseEntity.ok(students);
     }
     
     @GetMapping("/{regNo}")
-    public Optional<Student> getByRegNo(@PathVariable String regNo) {
-        return repo.findById(regNo);
+    public ResponseEntity<Student> getByRegNo(@PathVariable String regNo) {
+        return repo.findById(regNo).map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.status(204).build());
     }
     
     @PostMapping
-    public Student create(@RequestBody Student student) {
-        return repo.save(student);
+    public ResponseEntity<Student> create(@RequestBody Student student) {
+        if(repo.existsById(student.getRegNo()))
+            return ResponseEntity.status(409).build();
+        Student newStud = repo.save(student);
+        return ResponseEntity.status(201).body(newStud);
     }
     
     @PutMapping("/{regNo}")
-    public Student update(@PathVariable String regNo, @RequestBody Student student) {
-        student.setRegNo(regNo);
-        return repo.save(student);
+    public ResponseEntity<Student> update(@PathVariable String regNo, @RequestBody Student student) {
+        if(repo.existsById(regNo)) {
+            student.setRegNo(regNo);
+            repo.save(student);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(204).build();
     }
 
     @DeleteMapping("/{regNo}")
-    public void delete(@PathVariable String regNo) {
-        repo.deleteById(regNo);
+    public ResponseEntity<String> delete(@PathVariable String regNo) {
+        if(repo.existsById(regNo)) {
+            repo.deleteById(regNo);
+            return ResponseEntity.ok().body("Student record Deleted");
+        }
+        return ResponseEntity.status(204).body("Student Record not found");
     }
     
     @GetMapping("/school")
-    public List<Student> getBySchool(@RequestParam String name) {
-        return repo.findBySchool(name);
+    public ResponseEntity<List<Student>> getBySchool(@RequestParam String name) {
+        List<Student> res = repo.findBySchool(name);
+        if(res.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        } else {
+            return ResponseEntity.ok(res);
+        }
     }
     
     @GetMapping("/school/count")
-    public long countBySchool(@RequestParam String name) {
-        return repo.countBySchool(name);
+    public ResponseEntity<Long> countBySchool(@RequestParam String name) {
+        long count = repo.countBySchool(name);
+        return ResponseEntity.ok(count);
     }
 
     @GetMapping("/school/standard/count")
-    public String countByStandard(@RequestParam Integer standard) {
-        return "Students studying in standard "+ standard+" are " + repo.countByStandard(standard);
+    public ResponseEntity<String> countByStandard(@RequestParam Integer standard) {
+        return ResponseEntity.ok().body("Students studying in standard "+ standard+" are " + repo.countByStandard(standard));
     }
 
     @GetMapping("/strength")
-    public String countByGenderAndStandard(@RequestParam String gender, @RequestParam Integer standard) {
-        return "Students studying in standard "+standard+" and with gender "+gender+" are " + repo.countByGenderAndStandard(gender, standard);
+    public ResponseEntity<String> countByGenderAndStandard(@RequestParam String gender, @RequestParam Integer standard) {
+        return ResponseEntity.ok().body("Students studying in standard "+standard+" and with gender "+gender+" are " + repo.countByGenderAndStandard(gender, standard));
     }
 
     @PatchMapping("{regNo}")
-    public String patchStudent(@PathVariable String regNo, @RequestBody Student s){
+    public ResponseEntity<String> patchStudent(@PathVariable String regNo, @RequestBody Student s){
         Optional<Student> oldS = repo.findById(regNo);
         if(!oldS.isPresent())
-            return "No student with this RegNo found";
+            return ResponseEntity.status(204).body("No student with this RegNo found");
         Student s1 = oldS.get();
         if(s.getRegNo() != null) s1.setRegNo(s.getRegNo());
         if(s.getRollNo() != null) s1.setRollNo(s.getRollNo());
@@ -98,15 +121,21 @@ public class StudentController {
         if(s.getGender() != null) s1.setGender(s.getGender());
         if(s.getPercentage() != null) s1.setPercentage(s.getPercentage());
         repo.save(s1);
-        return "Successfully Patched";
+        return ResponseEntity.ok().body("Successfully Patched");
     }
 
     @GetMapping("/result")
-    public List<Student> getResult(@RequestParam boolean pass) {
-        if(pass)
-            return repo.findByPercentageGreaterThanEqualOrderByPercentageDesc(40.0);
-        else
-            return repo.findByPercentageLessThanOrderByPercentageDesc(40.0);
+    public ResponseEntity<List<Student>> getResult(@RequestParam boolean pass) {
+        List<Student> result;
+        if (pass) {
+            result = repo.findByPercentageGreaterThanEqualOrderByPercentageDesc(40.0);
+        } else {
+            result = repo.findByPercentageLessThanOrderByPercentageDesc(40.0);
+        }
+        if (result.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+        return ResponseEntity.ok(result);
     }
 
 }
