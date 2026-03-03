@@ -56,3 +56,6 @@ logs/
 application.properties
 application.yml
 secrets.yml
+
+
+.vscode
