@@ -1,6 +1,41 @@
+# Jenkins Trigger GitHub Job - 24 Feb
+Calculator.java = add(), sub(), mul(), div()
+ 
+CalculatorMain.java = main()
+ 
+* Both of these programs should be pushed into GIT/GitHub
+* As soon as the code is pushed to GIT/GitHub, immediately take the code, compile and execute
+* As soon as the code is pushed to GIT/GitHub, immediately take the code, compile, test, build and execute
+
+### See /GitCalculatorJob/README.MD for more info.
+
+---
+---
+
+# Deploy on Maven Central Repositoy - 20 Feb
+Create an application jar file and deploy it in mvnrepository.com
+
+Link for Repo: [Visit](https://mvnrepository.com/artifact/io.github.yashd15/idValidator)
+
+```xml
+<!-- Source: https://mvnrepository.com/artifact/io.github.yashd15/idValidator -->
+<dependency>
+    <groupId>io.github.yashd15</groupId>
+    <artifactId>idValidator</artifactId>
+    <version>1.0.0</version>
+    <scope>compile</scope>
+</dependency>
+```
+
+---
+---
+
 # Student REST App - 17 Feb
 ### *Included Response Entity - 18 Feb
 ### *Included Spring Boot Testing - 24 Feb
+* Test for an service call in Spring Boot.
+* Return a proper status code if resource is not found.
+
 Create a Student database having the below structure and generate the given REST APIs
 * Use PostGres Database
 * Student: RegNo, RollNo, Name, Standard, School, Gender, Percentage
@@ -53,7 +88,7 @@ RollNo., Name, Standard, School
 ---
 ---
 
-# Maintenance App
+# Maintenance App - 3 Feb
 Layout Maintenance Application:
 
 Types: Villa, Apartment, Independent House, Open Site
