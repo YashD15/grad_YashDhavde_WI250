@@ -1,0 +1,32 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    overflow: hidden;
+}
+
+.sidebar {
+    font-size: 1.05rem;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: #e9ecef;
+}
+
+/* Mobile Offcanvas Width */
+.offcanvas-start {
+    width: 280px !important;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+}

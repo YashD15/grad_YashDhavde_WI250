@@ -1,3 +1,12 @@
+# Our Bank Website - 3 Mar
+Create a website for 'Our Bank' as Single Page Application using Plain HTML, CSS, Plain JS.
+
+### *Also added CSS styling to website using BootStrap - 4 Mar
+### *Also added Loan EMI Calculator to website - 3 Mar
+
+---
+---
+
 # Jenkins Trigger GitHub Job - 24 Feb
 Calculator.java = add(), sub(), mul(), div()
  
