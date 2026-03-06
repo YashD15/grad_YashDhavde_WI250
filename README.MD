@@ -7,6 +7,16 @@ Create a website for 'Our Bank' as Single Page Application using Plain HTML, CSS
 ---
 ---
 
+# Docker DB & Java App Containers - 25 Feb
+* Create an application which can insert a record into a table (wrapped inside a container). Also the compilation should be done in the container itself.
+* The database need to be in other container (Use any sql DB, preferably PostGres)
+* Just make these 2 containers to interact with each other.
+* Build = docker compose up --build
+* Observe in Postgres = docker exec -it postgres_db psql -U postgres -d testdb <br> SELECT * FROM users;
+
+---
+---
+
 # Jenkins Trigger GitHub Job - 24 Feb
 Calculator.java = add(), sub(), mul(), div()
  
