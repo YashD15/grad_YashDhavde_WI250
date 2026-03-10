@@ -1,0 +1,35 @@
+<div class="container">
+
+  <h2>Student Search</h2>
+
+  <div class="search-box">
+    <input type="number" #regNo placeholder="Enter Registration No">
+    <button (click)="searchStudent(regNo.value)">Search</button>
+  </div>
+
+  <!-- Student Found -->
+  <div *ngIf="selectedStudent as student" class="card">
+
+    <h3>Student Details</h3>
+
+    <p><span>Reg No:</span> {{student.regNo}}</p>
+    <p><span>Roll No:</span> {{student.rollNo}}</p>
+    <p><span>Name:</span> {{student.name}}</p>
+    <p><span>Standard:</span> {{student.standard}}</p>
+    <p><span>School:</span> {{student.school}}</p>
+
+  </div>
+
+  <!-- Not Found -->
+  <div *ngIf="searched && !selectedStudent" class="not-found">
+    Student not found
+  </div>
+
+  <br><br>
+  <h4>OR</h4>
+
+  <div>
+    <p>Go back to <a routerLink="/login">Login</a> page.</p>
+  </div>
+
+</div>

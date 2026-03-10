@@ -1,0 +1,18 @@
+<h2>Update Student</h2>
+
+<form (submit)="updateStudent(regNo.value, rollNo.value, name.value, standard.value, school.value)">
+
+<input type="text" #regNo placeholder="RegNo" [value]="student.regNo"><br><br>
+
+<input type="number" #rollNo placeholder="RollNo" [value]="student.rollNo"><br><br>
+
+<input type="text" #name placeholder="Name" [value]="student.name"><br><br>
+
+<input type="number" #standard placeholder="Standard" [value]="student.standard"><br><br>
+
+<input type="text" #school placeholder="School" [value]="student.school"><br><br>
+
+<input type="submit" value="Update Student">
+<input style="margin-left: 20px;" type="button" value="Cancel" (click)="cancel()">
+
+</form>

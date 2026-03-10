@@ -1,3 +1,13 @@
+# Student Management WebApp - 9 Mar
+
+* Create an Angular Web App for Student management
+* Only Admins can login to create, update, remove the student records
+* Staff can only see the details of students
+* Student details are : regNo, rollNo, name, standard, school
+
+---
+---
+
 # Our Bank Website - 2 Mar
 Create a website for 'Our Bank' as Single Page Application using Plain HTML, CSS, Plain JS.
 

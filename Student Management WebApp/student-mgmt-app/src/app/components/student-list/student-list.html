@@ -1,0 +1,33 @@
+<h2>Student List</h2>
+
+<a *ngIf="role==='admin'" routerLink="/student-form">Add Student</a>
+
+<button style="margin-left: 10px;" (click)="logout()">Logout</button>
+
+<table>
+
+<tr>
+<th>RegNo</th>
+<th>RollNo</th>
+<th>Name</th>
+<th>Standard</th>
+<th>School</th>
+<th *ngIf="role==='admin'">Action</th>
+</tr>
+
+<tr *ngFor="let s of students; let i=index">
+
+<td>{{s.regNo}}</td>
+<td>{{s.rollNo}}</td>
+<td>{{s.name}}</td>
+<td>{{s.standard}}</td>
+<td>{{s.school}}</td>
+
+<td *ngIf="role==='admin'">
+    <button class="update" (click)="updateStudent(i, s)">Update</button>
+    <button class="delete" (click)="deleteStudent(i)">Delete</button>
+</td>
+
+</tr>
+
+</table>
