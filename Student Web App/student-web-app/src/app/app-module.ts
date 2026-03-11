@@ -1,0 +1,19 @@
+import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing-module';
+import { App } from './app';
+import { GetStudents } from './components/get-students/get-students';
+import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AddStudent } from './components/add-student/add-student';
+import { Home } from './components/home/home';
+import { UpdateStudent } from './components/update-student/update-student';
+
+@NgModule({
+  declarations: [App, GetStudents, AddStudent, Home, UpdateStudent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [provideBrowserGlobalErrorListeners(), HttpClient],
+  bootstrap: [App],
+})
+export class AppModule {}

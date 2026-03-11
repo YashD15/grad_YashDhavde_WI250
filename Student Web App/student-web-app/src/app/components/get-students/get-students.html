@@ -1,0 +1,62 @@
+<div class="min-h-screen bg-gray-50 p-6">
+  <h2 class="text-3xl font-bold text-indigo-600 mb-6">Students List</h2>
+
+  <!-- Add Student button (admin only) -->
+  <div *ngIf="role==='admin'" class="mb-4">
+    <button (click)="addStudent()" class="px-6 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Add Student</button>
+  </div>
+  <div class="mb-4">
+    <button (click)="addStudent()" class="px-6 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Refresh</button>
+  </div>
+  <div class="mb-4">
+    <a routerLink="/" class="px-6 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Logout</a>
+  </div>
+
+  <div class="mt-8 bg-white p-6 shadow rounded">
+  <h3 class="text-xl font-bold text-indigo-600 mb-4">API Endpoint Testing</h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <button (click)="testBySchool()" class="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600 transition">Get Students by School</button>
+    <button (click)="testSchoolCount()" class="px-4 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500 transition">Get School Count</button>
+    <button (click)="testSchoolStandardCount()" class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition">Get Class Count</button>
+    <button (click)="testStrength()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">Get Strength by Gender/Standard</button>
+    <button (click)="testResult()" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Get Results (Pass)</button>
+  </div>
+</div>
+<!-- <div *ngIf="currentCount !== null" class="mb-4 p-2 bg-gray-100 rounded text-gray-700">
+  Count: {{ currentCount }}
+</div> -->
+
+  <!-- Students Table -->
+  <div class="overflow-x-auto bg-white shadow rounded">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-indigo-100">
+        <tr>
+          <th class="px-4 py-2 text-left text-gray-700">Reg No</th>
+          <th class="px-4 py-2 text-left text-gray-700">Roll No</th>
+          <th class="px-4 py-2 text-left text-gray-700">Name</th>
+          <th class="px-4 py-2 text-left text-gray-700">Standard</th>
+          <th class="px-4 py-2 text-left text-gray-700">School</th>
+          <th class="px-4 py-2 text-left text-gray-700">Gender</th>
+          <th class="px-4 py-2 text-left text-gray-700">Percentage</th>
+          <th *ngIf="role==='admin'" class="px-4 py-2 text-left text-gray-700">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+  <tr *ngFor="let student of displayedStudents" class="hover:bg-gray-50">
+    <td class="px-4 py-2">{{ student.regNo }}</td>
+    <td class="px-4 py-2">{{ student.rollNo }}</td>
+    <td class="px-4 py-2">{{ student.name }}</td>
+    <td class="px-4 py-2">{{ student.standard }}</td>
+    <td class="px-4 py-2">{{ student.school }}</td>
+    <td class="px-4 py-2">{{ student.gender }}</td>
+    <td class="px-4 py-2">{{ student.percentage }}%</td>
+    <td *ngIf="role==='admin'" class="px-4 py-2 space-x-2">
+      <button (click)="updateStudent(student)" class="px-3 py-1 bg-yellow-400 text-white rounded hover:bg-yellow-500 transition">Update</button>
+      <button (click)="deleteStudent(student)" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">Delete</button>
+    </td>
+  </tr>
+</tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6">
+  <h2 class="text-3xl font-bold text-indigo-600 mb-6 text-center">Add New Student</h2>
+
+  <form class="w-full max-w-4xl bg-white shadow-md rounded px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Registration Number -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Registration No</label>
+      <input type="text" [(ngModel)]="student.regNo" name="regNo"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+    </div>
+
+    <!-- Roll Number -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Roll No</label>
+      <input type="number" [(ngModel)]="student.rollNo" name="rollNo"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+    </div>
+
+    <!-- Name -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Name</label>
+      <input type="text" [(ngModel)]="student.name" name="name"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+    </div>
+
+    <!-- Standard -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Standard</label>
+      <input type="number" [(ngModel)]="student.standard" name="standard"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+    </div>
+
+    <!-- School -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">School</label>
+      <input type="text" [(ngModel)]="student.school" name="school"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+    </div>
+
+    <!-- Gender -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Gender</label>
+      <select [(ngModel)]="student.gender" name="gender"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <!-- Percentage -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Percentage</label>
+      <input type="number" [(ngModel)]="student.percentage" name="percentage"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+    </div>
+
+    <!-- Buttons: span both columns -->
+    <div class="col-span-2 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4 mt-4">
+      <button type="button" (click)="cancel()"
+        class="w-full sm:w-auto px-6 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition">Cancel</button>
+      <button type="button" (click)="addStudent()"
+        class="w-full sm:w-auto px-6 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Add</button>
+    </div>
+
+  </form>
+</div>

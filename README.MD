@@ -1,3 +1,12 @@
+# Student Web App Full Stack (Java Backend + Angular)
+
+Create the frontend and integrate to invoke all these given REST services.
+
+Used Student REST API project as backend + new Angular project.
+
+---
+---
+
 # Student Management WebApp - 9 Mar
 
 * Create an Angular Web App for Student management
