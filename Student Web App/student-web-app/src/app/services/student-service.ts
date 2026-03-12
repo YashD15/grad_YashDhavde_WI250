@@ -32,6 +32,7 @@ export class StudentService {
       alert("Invalid username or password");
     }
   }
+
   setRole(r: string | null) {
     this.role = r;
   }
@@ -46,15 +47,19 @@ export class StudentService {
     localStorage.removeItem("role");
     this.router.navigate(["/"]);
   }
+
   addStudent(student: Student): Observable<Student> {
     return this.http.post<Student>(this.baseUrl, student);
   }
+
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(this.baseUrl);
   }
 
-  deleteStudent(regNo: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${regNo}`);
+  deleteStudent(regNo: string): Observable<string> {
+    return this.http.delete(`${this.baseUrl}/${regNo}`, {
+      responseType: 'text'
+    });
   }
 
   getStudentByRegNo(regNo: string): Observable<Student> {
@@ -65,7 +70,6 @@ export class StudentService {
     return this.http.put<Student>(`${this.baseUrl}/${student.regNo}`, student);
   }
 
-  // New API endpoints
   getStudentsBySchool(schoolName: string): Observable<Student[]> {
     const params = new HttpParams().set('name', schoolName);
     return this.http.get<Student[]>(`${this.baseUrl}/school`, { params });
@@ -77,19 +81,22 @@ export class StudentService {
   }
 
   getStudentCountByStandard(standard: number): Observable<string> {
-  const params = new HttpParams().set('standard', standard);
-  return this.http.get<string>(`${this.baseUrl}/school/standard/count`, { params });
-}
+    const params = new HttpParams().set('standard', standard.toString());
+    return this.http.get(`${this.baseUrl}/school/standard/count`, {
+      params,
+      responseType: 'text'
+    });
+  }
 
-getStrengthByGenderAndStandard(gender: string, standard: number): Observable<string> {
-  const params = new HttpParams()
-    .set('gender', gender)
-    .set('standard', standard.toString());
-  return this.http.get<string>(`${this.baseUrl}/strength`, { params });
-}
+  getStrengthByGenderAndStandard(gender: string, standard: number): Observable<string> {
+    const params = new HttpParams()
+      .set('gender', gender)
+      .set('standard', standard.toString());
+    return this.http.get(`${this.baseUrl}/strength`, { params, responseType: 'text' });
+  }
 
-getResultsByPass(pass: boolean): Observable<Student[]> {
-  return this.http.get<Student[]>(`${this.baseUrl}/result?pass=${pass}`);
-}
+  getResultsByPass(pass: boolean): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.baseUrl}/result?pass=${pass}`);
+  }
 
 }

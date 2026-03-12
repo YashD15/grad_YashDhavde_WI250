@@ -1,29 +1,29 @@
 <div class="flex flex-1 flex-col w-full h-full p-4 sm:p-6 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 overflow-auto">
 
-  <h2 class="text-2xl sm:text-3xl font-extrabold text-indigo-600 mb-6 text-center tracking-tight">
-    Students List
+  <h2 class="text-2xl sm:text-3xl font-extrabold text-indigo-600 mb-2 text-center tracking-tight">
+    Dashboard
   </h2>
 
   <!-- Admin Action Buttons -->
   <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 mb-4">
-    <button *ngIf="role==='ADMIN'" (click)="addStudent()" class="w-full sm:w-auto px-6 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 hover:shadow-md transition">
-      Add Student
+    <button *ngIf="role==='ADMIN'" (click)="addStudent()" class="w-full sm:w-auto px-6 py-2 bg-green-600 text-black rounded-lg shadow-sm hover:bg-green-700 hover:shadow-md transition">
+      + Add Student
     </button>
-    <button (click)="logout()" class="w-full sm:w-auto px-6 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 hover:shadow-md transition">
+    <button (click)="logout()" class="w-full sm:w-auto px-6 py-2 bg-red-600 text-white rounded-lg shadow-sm hover:bg-red-700 hover:shadow-md transition">
       Logout
     </button>
   </div>
 
   <!-- Sorting / Utility Buttons -->
-  <div class="bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-gray-100 mb-6">
+  <div class="bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-gray-100 mb-4">
     <h3 class="text-xl font-bold text-indigo-600 mb-4">Sorting & Utilities</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <button (click)="loadStudents()" class="px-4 py-2 bg-teal-500 text-white rounded-lg shadow-sm hover:bg-teal-600 transition">Get All Students</button>
-      <button (click)="testBySchool()" class="px-4 py-2 bg-teal-500 text-white rounded-lg shadow-sm hover:bg-teal-600 transition">Get Students by School</button>
-      <button (click)="testSchoolCount()" class="px-4 py-2 bg-yellow-400 text-white rounded-lg shadow-sm hover:bg-yellow-500 transition">Get School Count</button>
-      <button (click)="testSchoolStandardCount()" class="px-4 py-2 bg-purple-500 text-white rounded-lg shadow-sm hover:bg-purple-600 transition">Get Class Count</button>
-      <button (click)="testStrength()" class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-sm hover:bg-green-600 transition">Get Strength by Gender/Standard</button>
-      <button (click)="testResult()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition">Get Results (Pass)</button>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+      <button (click)="loadStudents()" class="px-4 py-2 bg-teal-500 text-black rounded-lg shadow-sm hover:bg-teal-600 transition">Get All Students</button>
+      <button (click)="getBySchool()" class="px-4 py-2 bg-purple-500 text-black rounded-lg shadow-sm hover:bg-purple-600 transition">Get Students by School</button>
+      <button (click)="getSchoolCount()" class="px-4 py-2 bg-purple-500 text-black rounded-lg shadow-sm hover:bg-purple-600 transition">Get School Count</button>
+      <button (click)="getSchoolStandardCount()" class="px-4 py-2 bg-purple-500 text-black rounded-lg shadow-sm hover:bg-purple-600 transition">Get Class Count</button>
+      <button (click)="getStrength()" class="px-4 py-2 bg-purple-500 text-black rounded-lg shadow-sm hover:bg-purple-600 transition">Get Strength by Gender/Standard</button>
+      <button (click)="getResult()" class="px-4 py-2 bg-purple-500 text-black rounded-lg shadow-sm hover:bg-purple-600 transition">Get Results (Pass)</button>
     </div>
   </div>
 

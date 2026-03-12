@@ -48,16 +48,17 @@ export class GetStudents implements OnInit {
   deleteStudent(student: Student) {
     if (confirm(`Are you sure you want to delete ${student.name}?`)) {
       this.studentService.deleteStudent(student.regNo).subscribe({
-        next: () => {
-          this.loadStudents();
+        next: (res) => {
+          alert(res);
           this.cd.detectChanges();
+          this.loadStudents();
         },
         error: err => console.error(err)
       });
     }
   }
 
-  testBySchool() {
+  getBySchool() {
     const schoolName = prompt('Enter school name (e.g., KV):');
     if (schoolName) {
       this.studentService.getStudentsBySchool(schoolName).subscribe({
@@ -71,7 +72,7 @@ export class GetStudents implements OnInit {
     }
   }
 
-  testSchoolCount() {
+  getSchoolCount() {
     const schoolName = prompt('Enter school name (e.g., DPS):');
     if (schoolName) {
       this.studentService.getStudentCountBySchool(schoolName).subscribe({
@@ -81,7 +82,7 @@ export class GetStudents implements OnInit {
     }
   }
 
-  testSchoolStandardCount() {
+  getSchoolStandardCount() {
     const standard = prompt('Enter standard (e.g., 5):');
     if (standard) {
       this.studentService.getStudentCountByStandard(Number(standard)).subscribe({
@@ -91,7 +92,7 @@ export class GetStudents implements OnInit {
     }
   }
 
-  testStrength() {
+  getStrength() {
     const gender = prompt('Enter gender (MALE/FEMALE):');
     const standard = prompt('Enter standard (e.g., 5):');
     if (gender && standard) {
@@ -102,7 +103,7 @@ export class GetStudents implements OnInit {
     }
   }
 
-  testResult() {
+  getResult() {
     const pass = confirm('Do you want to get students who passed? OK=Pass, Cancel=Fail');
     this.studentService.getResultsByPass(pass).subscribe({
       next: data => {

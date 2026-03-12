@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Student } from '../../models/student.model';
+import { StudentService } from '../../services/student-service';
 
 @Component({
   selector: 'app-get-detail',
@@ -12,13 +13,19 @@ export class GetDetail {
   student: Student | null = null;
   searched: boolean = false;
 
-  // Mock data; replace with API call
-  students: Student[] = [
-    { regNo: 'R001', rollNo: 1, name: 'Alice', standard: 10, school: 'ABC School', gender: 'Female', percentage: 85 }
-  ];
-
-  searchStudent() {
-    this.student = this.students.find(s => s.regNo === this.regNo) || null;
-    this.searched = true;
-  }
+  constructor(private ss: StudentService) {}
+  
+  searchStudent(regNo: string) {
+  this.ss.getStudentByRegNo(regNo).subscribe({
+    next: (res) => {
+      this.student = res;
+      this.searched = true;
+    },
+    error: (err) => {
+      console.error(err);
+      this.student = null;
+      this.searched = true;
+    }
+  });
+}
 }
