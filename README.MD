@@ -1,8 +1,8 @@
-# Student Web App Full Stack (Java Backend + Angular)
+# Student Web App Full Stack (Java Backend + Angular) - 11 Mar
 
 Create the frontend and integrate to invoke all these given REST services.
 
-Used Student REST API project as backend + new Angular project.
+Used Student REST APP project as backend + new Angular project.
 
 ---
 ---

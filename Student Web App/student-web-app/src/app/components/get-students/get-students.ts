@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Student } from '../../models/student.model';
 import { StudentService } from '../../services/student-service';
 import { Router } from '@angular/router';
@@ -13,12 +13,13 @@ export class GetStudents implements OnInit {
 
   students: Student[] = [];
   displayedStudents: Student[] = [];
-  role: string = 'staff'; // static role
+  role: string | null = '';
 
-  constructor(private studentService: StudentService, private router: Router) { }
+  constructor(private studentService: StudentService, private router: Router, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.loadStudents();
+    this.role = this.studentService.getRole();
   }
 
   loadStudents() {
@@ -26,13 +27,18 @@ export class GetStudents implements OnInit {
       next: data => {
         this.students = data;
         this.displayedStudents = data;
+        this.cd.detectChanges();
       },
       error: err => console.error(err)
     });
   }
 
+  logout() {
+    this.studentService.logout();
+  }
+
   addStudent() {
-    this.router.navigate(['/details']);
+    this.router.navigate(['/students/add']);
   }
 
   updateStudent(student: Student) {
@@ -42,21 +48,26 @@ export class GetStudents implements OnInit {
   deleteStudent(student: Student) {
     if (confirm(`Are you sure you want to delete ${student.name}?`)) {
       this.studentService.deleteStudent(student.regNo).subscribe({
-        next: () => this.loadStudents(),
+        next: () => {
+          this.loadStudents();
+          this.cd.detectChanges();
+        },
         error: err => console.error(err)
       });
     }
   }
 
-  // --- API Test Methods ---
-
   testBySchool() {
     const schoolName = prompt('Enter school name (e.g., KV):');
     if (schoolName) {
       this.studentService.getStudentsBySchool(schoolName).subscribe({
-        next: data => this.displayedStudents = data,
+        next: data => {
+          this.displayedStudents = data;
+          this.cd.detectChanges();
+        },
         error: err => console.error(err)
       });
+      
     }
   }
 
@@ -81,7 +92,7 @@ export class GetStudents implements OnInit {
   }
 
   testStrength() {
-    const gender = prompt('Enter gender (MALE/FEMALE/OTHER):');
+    const gender = prompt('Enter gender (MALE/FEMALE):');
     const standard = prompt('Enter standard (e.g., 5):');
     if (gender && standard) {
       this.studentService.getStrengthByGenderAndStandard(gender.toUpperCase(), Number(standard)).subscribe({
@@ -95,7 +106,8 @@ export class GetStudents implements OnInit {
     const pass = confirm('Do you want to get students who passed? OK=Pass, Cancel=Fail');
     this.studentService.getResultsByPass(pass).subscribe({
       next: data => {
-        this.displayedStudents = data; // Update table for List<Student>
+        this.displayedStudents = data;
+        this.cd.detectChanges();
       },
       error: err => console.error(err)
     });

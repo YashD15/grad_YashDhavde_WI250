@@ -1,68 +1,80 @@
-<div class="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6">
-  <h2 class="text-3xl font-bold text-indigo-600 mb-6 text-center">Add New Student</h2>
+<div class="flex flex-1 flex-col items-center justify-start w-full h-full p-4 sm:p-6 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 overflow-auto">
 
-  <form class="w-full max-w-4xl bg-white shadow-md rounded px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+  <h2 class="text-2xl sm:text-3xl font-extrabold text-indigo-600 mb-6 text-center tracking-tight">
+    Add New Student
+  </h2>
 
-    <!-- Registration Number -->
+  <form class="w-full max-w-4xl bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+
+    <!-- Registration No -->
     <div>
       <label class="block text-gray-700 font-semibold mb-1">Registration No</label>
-      <input type="text" [(ngModel)]="student.regNo" name="regNo"
-        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      <input type="text" [(ngModel)]="student.regNo" name="regNo" required
+        class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition" 
+        placeholder="Enter registration number" />
     </div>
 
-    <!-- Roll Number -->
+    <!-- Roll No -->
     <div>
       <label class="block text-gray-700 font-semibold mb-1">Roll No</label>
-      <input type="number" [(ngModel)]="student.rollNo" name="rollNo"
-        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      <input type="number" [(ngModel)]="student.rollNo" name="rollNo" required
+        class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition" 
+        placeholder="Enter roll number" />
     </div>
 
     <!-- Name -->
     <div>
       <label class="block text-gray-700 font-semibold mb-1">Name</label>
-      <input type="text" [(ngModel)]="student.name" name="name"
-        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      <input type="text" [(ngModel)]="student.name" name="name" required 
+        class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition" 
+        placeholder="Enter student name" />
     </div>
 
     <!-- Standard -->
     <div>
       <label class="block text-gray-700 font-semibold mb-1">Standard</label>
-      <input type="number" [(ngModel)]="student.standard" name="standard"
-        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      <input type="number" [(ngModel)]="student.standard" name="standard" required
+        class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition" 
+        placeholder="Enter standard/class" />
     </div>
 
     <!-- School -->
     <div>
       <label class="block text-gray-700 font-semibold mb-1">School</label>
-      <input type="text" [(ngModel)]="student.school" name="school"
-        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      <input type="text" [(ngModel)]="student.school" name="school" required
+        class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition" 
+        placeholder="Enter school name" />
     </div>
 
     <!-- Gender -->
     <div>
       <label class="block text-gray-700 font-semibold mb-1">Gender</label>
-      <select [(ngModel)]="student.gender" name="gender"
-        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400">
-        <option value="">Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
+      <select [(ngModel)]="student.gender" name="gender" required
+        class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition">
+        <option value="" selected disabled>Select Gender</option>
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
       </select>
     </div>
 
     <!-- Percentage -->
     <div>
       <label class="block text-gray-700 font-semibold mb-1">Percentage</label>
-      <input type="number" [(ngModel)]="student.percentage" name="percentage"
-        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      <input type="number" [(ngModel)]="student.percentage" name="percentage" required
+        class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition" 
+        placeholder="Enter percentage" />
     </div>
 
-    <!-- Buttons: span both columns -->
-    <div class="col-span-2 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4 mt-4">
+    <!-- Action Buttons -->
+    <div class="col-span-1 sm:col-span-2 flex flex-col sm:flex-row justify-end gap-3 mt-4">
       <button type="button" (click)="cancel()"
-        class="w-full sm:w-auto px-6 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition">Cancel</button>
+        class="w-full sm:w-auto px-6 py-2 rounded-lg bg-gray-400 text-white font-medium shadow-sm hover:bg-gray-500 hover:shadow-md active:scale-[0.98] transition-all duration-200">
+        Cancel
+      </button>
       <button type="button" (click)="addStudent()"
-        class="w-full sm:w-auto px-6 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Add</button>
+        class="w-full sm:w-auto px-6 py-2 rounded-lg bg-indigo-600 text-white font-medium shadow-sm hover:bg-indigo-700 hover:shadow-md active:scale-[0.98] transition-all duration-200">
+        Add
+      </button>
     </div>
 
   </form>

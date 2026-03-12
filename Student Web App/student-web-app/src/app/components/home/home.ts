@@ -10,13 +10,11 @@ import { Router } from '@angular/router';
 export class Home {
   constructor(private router: Router) { }
 
-  navigateToLogin() {
-    // Navigate to login page
-    this.router.navigate(['/login']);
+  toDashboard() {
+    this.router.navigate(['/students/details']);
   }
 
   getDetails() {
-    // Navigate to details page for now
     this.router.navigate(['/details']);
   }
 }

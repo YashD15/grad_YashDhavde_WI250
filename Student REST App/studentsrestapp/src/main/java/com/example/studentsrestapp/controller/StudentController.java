@@ -22,7 +22,7 @@ import com.example.studentsrestapp.repository.StudentRepo;
 
 @RestController
 @RequestMapping("/students")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:4200")
 public class StudentController {
 
     @Autowired

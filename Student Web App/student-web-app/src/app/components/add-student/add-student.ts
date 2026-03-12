@@ -20,24 +20,33 @@ export class AddStudent {
     percentage: 0
   };
 
-  constructor(private studentService: StudentService, private router: Router) {}
+  constructor(private ss: StudentService, private router: Router) {}
 
-  addStudent() {
-    this.studentService.addStudent(this.student).subscribe({
-      next: (res) => {
-        alert('Student added successfully!');
-        this.router.navigate(['/']);
-      },
-      error: (err) => {
-        alert('Error adding student. Please try again.');
-        console.error(err);
-      }
-    });
+  addStudent(): void {
+    if(this.student.regNo == '' || 
+      this.student.rollNo == 0 ||
+      this.student.name == '' ||
+      this.student.standard == 0 ||
+      this.student.school == '' ||
+      this.student.gender == '' ||
+      this.student.percentage == 0
+    ) {
+      alert("Empty field detected in the form");
+    } else {
+      this.ss.addStudent(this.student).subscribe({
+        next: (res) => {
+          alert('Student added successfully!');
+          this.router.navigate(['/students/details']);
+        },
+        error: (err) => {
+          alert('Error adding student. Please try again.');
+          console.error(err);
+        }
+      });
+    }
   }
 
-  updateStudent() {}
-
-  cancel() {
-    this.router.navigate(['/']);
+  cancel(): void {
+    this.router.navigate(['/students/details']);
   }
 }
